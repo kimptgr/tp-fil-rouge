@@ -95,7 +95,7 @@ jobs:
           exit 1
       - name: Run API container
         run: |
-          docker run -d --name todolist-api \
+          docker run -d --name todolist-api --add-host=host.docker.internal:host-gateway \
           -e DB_HOST=host.docker.internal \
           -e DB_USER=root \
           -e DB_PASSWORD=root \
