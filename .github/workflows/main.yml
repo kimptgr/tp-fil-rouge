@@ -61,7 +61,7 @@ jobs:
         uses: actions/checkout@v4
       - name: Build image
         run: |
-          docker build -t todolistbackend:ci .
+          docker build -t todolist-api:ci .
 
   deploy_local:
     name: Local deploy + test smoke
@@ -102,7 +102,7 @@ jobs:
           -e DB_NAME=todolist_db \
           -e PORT=3000 \
           -p 3000:3000 \
-          todolistbackend:ci
+          todolist-api:ci
       - name: Wait API reachable
         run: |
           for i in {1..30}; do 
