@@ -16,7 +16,7 @@ jobs:
     name: Tests
     runs-on: ubuntu-latest
     services:
-      mysql:
+      todolist-mysql:
         image: mysql:8.0
         env:
           MYSQL_ROOT_PASSWORD: root
