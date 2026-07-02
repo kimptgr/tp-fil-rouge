@@ -51,7 +51,6 @@ jobs:
             echo "MySql is dead" exit 1
       - name: Run tests
         run: npm test
-
   build:
     name: Build docker image
     runs-on: ubuntu-latest
@@ -61,8 +60,7 @@ jobs:
         uses: actions/checkout@v4
       - name: Build image
         run: |
-          docker build -t todolist-api:ci .
-
+          docker build -t todolist-backend:ci .
   deploy_local:
     name: Local deploy + test smoke
     runs-on: ubuntu-latest
@@ -102,7 +100,7 @@ jobs:
           -e DB_NAME=todolist_db \
           -e PORT=3000 \
           -p 3000:3000 \
-          todolist-api:ci
+          todolist-backend:ci
       - name: Wait API reachable
         run: |
           for i in {1..30}; do 
