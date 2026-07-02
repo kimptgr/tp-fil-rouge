@@ -96,12 +96,10 @@ jobs:
       - name: Run API container
         run: |
           docker run -d --name todolist-api \
-          -e
-          DB_HOST=host.docker.internal \
+          -e DB_HOST=host.docker.internal \
           -e DB_USER=root \
           -e DB_PASSWORD=root \
-          -e
-          DB_NAME=todolist_db \ 
+          -e DB_NAME=todolist_db \ 
           -e PORT=3000 \ 
           -p 3000:3000 \ 
           todolistbackend:ci
