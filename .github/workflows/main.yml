@@ -83,10 +83,15 @@ jobs:
           mysql:8.0
       - name: Wait for MySQL health
         run: |
-          for i in {1..30}; do 
-            status=$(docker inspect--format='{{.State.Health.Status}}' todolist-mysql 2>/dev/null || echo "starting") 
-            echo "MySQL
-          health: $status" if [ "$status" = "healthy" ]; then exit 0 fi sleep 2 done docker logs todolist-mysql
+          for i in {1..30}; do
+            status=$(docker inspect --format='{{.State.Health.Status}}' todolist-mysql 2>/dev/null || echo "starting")
+            echo "MySQL health: $status"
+            if [ "$status" = "healthy" ]; then
+              exit 0
+            fi
+            sleep 2
+          done
+          docker logs todolist-mysql
           exit 1
       - name: Run API container
         run: |
